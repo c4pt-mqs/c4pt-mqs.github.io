@@ -1,0 +1,138 @@
+<style>
+    /* About-me Section */
+    .about-me {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-right: 3rem;
+        background-color: #333;
+        border-radius: 30px;
+        margin-bottom: 40px;
+    }
+
+    .about-me-image-container {
+        width: 100%;
+        max-width: 300px;
+        margin-left: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .about-me-image {
+        display: flex;
+        width: 100%;
+        max-width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .about-me-content {
+        flex: 1 1 100%;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-left: 1.5rem;
+    }
+
+    .about-me-content h3 {
+        color: #999;
+    }
+
+    .about-me-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+
+    }
+
+    .about-me-description {
+        margin-bottom: 1.5rem;
+        color: #fff;
+    }
+
+    .about-me-links-list {
+        margin-bottom: 1.5rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .about-me-links-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .about-me-links-list a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .about-me-links-list a:hover {
+        color: chocolate;
+    }
+
+    .about-me-contact {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .about-me-contact a {
+        color: #000;
+        text-decoration: none;
+        margin-left: 0.5rem;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .about-me-contact a:hover {
+        color: #666;
+    }
+
+    /* Responsive About-me Section */
+    @media only screen and (min-width: 768px) {
+        .about-me {
+            padding: 0;
+        }
+
+        .about-me-image-container {
+            max-width: 30%;
+            max-width: none;
+            margin-left: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-me-content {
+            flex: 1 1 60%;
+            margin-top: 0;
+            margin-left: 1.5rem;
+        }
+    }
+</style>
+
+<div class="about-me">
+    <div class="about-me-image-container">
+        <img class="about-me-image" src="/img/Unravel-2.jpg" alt="Profile Image">
+    </div>
+    <div class="about-me-content">
+        <h2 class="about-me-title">Kaptan İslam A.</h2>
+        <h3>CYBER SECURITY RESEARCHER</h3>
+        <p class="about-me-description">As a passionate high school student with a strong desire to pursue a career in
+            cybersecurity, I have dedicated myself to working on web application security. Additionally, I improve my
+            skills in both frontend and backend web development. With a keen interest in OSINT, I am expanding my
+            knowledge and developing new skills in this area. I am passionate about sharing my knowledge and experience
+            through blogging and I like to challenge with myself.</p>
+        <h3 class="about-me-subtitle">CONTACT</h3>
+        <ul class="about-me-links-list">
+            <a style="display: block;" target="_blank" rel="noopener"
+                href="https://discord.com/users/950019979896582184"><i style="margin-right: 5px;"
+                    class="fa-brands fa-discord"></i>Discord</a>
+            <a style="display: block;" target="_blank" rel="noopener"
+                href="https://www.linkedin.com/in/kaptan-islam/"><i style="margin-right: 5px;"
+                    class="fa-brands fa-linkedin"></i>Linkedin</a>
+            <a style="display: block;" target="_blank" rel="noopener" href="mailto:c4ptmqs@proton.me"><i
+                    style="margin-right: 5px;" class="fa-solid fa-envelope"></i>Proton Mail</a>
+        </ul>
+    </div>
+</div>

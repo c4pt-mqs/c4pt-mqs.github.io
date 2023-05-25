@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v6.3.0/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" defer></script>
+    <title>MyArchieve | {{ .Title }}</title>
+</head>
+
+<body>
+    {{ partial "menu.html" }}
+    {{ partial "header.html" }}
+    <div class="posts-container">
+        <div class="posts-content">
+            <div class="card-body">
+                <header>
+                    <h1 class="post-title">{{ .Title }}</h1>
+                    <p class="post-subtitle">{{ .Params.subtitle }}</p>
+                </header>
+                <ul class="post-meta">
+                    <li><i class="far fa-user-circle fa-fw"></i> <span class="card-author" aria-label="Author">{{
+                            .Params.author }}</span></li>
+                    <li><i class="far fa-calendar fa-fw"></i> <time class="card-date" aria-label="Created date">{{
+                            .Date.Format "January 02, 2006" }}</time></li>
+                    <li><i class="far fa-clock fa-fw"></i> <span class="card-readtime"
+                            aria-label="Estimated reading time">{{ .ReadingTime }} min read</span></li>
+                </ul>
+                <hr>
+            </div>
+            <div>{{ .Content }}</div>
+        </div>
+        {{ define "main" }}
+        <div class="slide-container">
+            {{ .Content }}
+        </div>
+        <div class="slide-numbers">
+            {{ .PageNumber }}
+        </div>
+        {{ end }}
+    </div>
+    {{ partial "footer.html" }}
+</body>
+
+</html>

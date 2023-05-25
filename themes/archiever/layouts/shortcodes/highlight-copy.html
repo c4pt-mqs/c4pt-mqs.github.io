@@ -1,0 +1,52 @@
+<blockquote>
+    <p>{{ .Inner | markdownify }}</p>
+    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="fa-solid fa-copy"></i></button>
+    <span class="copy-message"></span>
+</blockquote>
+
+<style>
+    blockquote {
+        display: block;
+        color: #666;
+        position: relative;
+        border-radius: 10px;
+    }
+
+    .copy-btn {
+        position: absolute;
+        top: 0.8em;
+        right: 1em;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+
+    .copy-message {
+        position: absolute;
+        top: 1em;
+        right: 3.2em;
+        font-size: 0.85em;
+        color: white;
+        display: none;
+    }
+</style>
+
+<script>
+    function copyToClipboard(button) {
+        const textToCopy = button.parentNode.querySelector('code').innerText;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        const message = button.parentNode.querySelector('.copy-message');
+        message.innerText = 'Copied!';
+        message.style.display = 'inline';
+        setTimeout(function () {
+            message.style.display = 'none';
+        }, 1000);
+    }
+</script>
+

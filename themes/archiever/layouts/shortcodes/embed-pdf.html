@@ -1,0 +1,13 @@
+{{- $pdfURL := .Get "url" -}}
+{{- $id := .Get "id" | default "pdf-viewer" -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $height := .Get "height" | default "20%" -}}
+
+<div style="position: relative; width: {{ $width }}; height: {{ $height }};">
+    <div id="{{ $id }}" style="padding-bottom: 2%; width: 100%; height: auto;"></div>
+</div>
+
+<script src="{{ "/js/pdfobject.min.js" | relURL }}"></script>
+<script>
+    PDFObject.embed("{{ $pdfURL }}", "#{{ $id }}");
+</script>

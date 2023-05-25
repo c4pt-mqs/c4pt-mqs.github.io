@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1B1B1E" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Main page of MyArchieve">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"
+        defer></script>
+    <script defer>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function (registration) {
+                        console.log('Service worker registered:', registration);
+                    })
+                    .catch(function (error) {
+                        console.log('Service worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+    <title>{{ .Title }}</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    {{ $pages := where .Site.Pages "Type" "post" }}
+    {{ partial "menu.html" }}
+    {{ partial "header.html" }}
+    <div class="card-deck">
+        {{ range $pages }}
+        <div class="card mb-4">
+            <div class="card-body">
+                <a href="{{ .RelPermalink }}" class="btn btn-primary">
+                    <h2 class="card-title">{{ .Title }}</h2>
+                </a>
+                <p class="card-text">{{ .Summary }}</p>
+                <ul>
+                    <li><i class="far fa-user-circle fa-fw"></i>
+                        <a class="card-author" href="/about">{{ .Params.author }}</a>
+                    </li>
+                    <li><i class="far fa-calendar fa-fw"></i>
+                        <div class="card-date">{{ .Date.Format "January 02, 2006" }}</div>
+                    </li>
+                    <li><i class="far fa-clock fa-fw"></i>
+                        <div class="card-readtime">{{ .ReadingTime }} min read</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ partial "right-sidebar.html" . }}
+    {{ partial "scroll-top.html" }}
+    {{ partial "footer.html" }}
+</body>
+
+</html>

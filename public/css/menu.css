@@ -1,0 +1,129 @@
+    /* Dark & Light Mode */
+    .light-mode {
+        background-color: #cccccc;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode ol>li>a {
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode ol>li>p>a {
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .main-content p {
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode p>a {
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .sidenav {
+        background-color: #F9F9F9;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .recent-updates li>a {
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .sidenav span {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .sidenav li>a {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .sidebar-header a,
+    p {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .card {
+        border-bottom: 1px solid #333;
+    }
+
+    .light-mode .card-text {
+        color: #909090;
+    }
+
+    .light-mode .card-title {
+        color: #333;
+    }
+
+    .light-mode .card-author,
+    .light-mode .card-date,
+    .light-mode .card-readtime {
+        color: #666;
+    }
+
+    .light-mode .card:hover {
+        box-shadow: 0 0 5px #333;
+    }
+
+    .light-mode #TableOfContents li>a {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .posts-content h3>a {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .posts-content ul>li>a {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode #breadcrumb {
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode #breadcrumb {
+        background-color: #999;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode #scroll-to-top {
+        background-color: #cccccc;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode #scroll-to-top:hover {
+        background-color: #757575;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .footer {
+        background-color: #fff;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode .toc li>a {
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .light-mode nav>ul>li>a {
+        color: #000;
+        transition: background-color 0.3s ease
+    }
+
+
+

@@ -1,0 +1,160 @@
+<style>
+    /* Archieve Deck */
+    .archieve-container {
+        display: flex;
+        background-color: #333;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .archieve-year {
+        margin-bottom: 20px;
+    }
+
+    .archieve-year-header {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: -10px;
+    }
+
+    .archieve-month-header {
+        font-size: 16px;
+        font-weight: bold;
+        color: gray;
+    }
+
+    .archieve-item {
+        margin-bottom: 8px;
+        border-radius: 5px;
+        list-style: none;
+        transition: all 0.2s ease;
+    }
+
+    .archieve-item:hover {
+        color: #f44336;
+        background-color: #333;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .archieve-link {
+        margin-left: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        transition: all 0.2s ease;
+    }
+
+    .archieve-link:hover {
+        color: #f44336;
+    }
+
+    .archieve-date {
+        font-style: italic;
+        color: #777;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
+    .archieve-excerpt {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0.8;
+    }
+
+    .archieve-year-header,
+    .archieve-month-header {
+        font-family: "poppins";
+    }
+
+    /* Responsive Archieve Deck */
+    @media (max-width: 768px) {
+        .archieve-container {
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .archieve-item {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .archieve-year-header {
+            font-size: 20px;
+        }
+
+        .archieve-month-header {
+            font-size: 16px;
+        }
+
+        .archieve-link {
+            font-size: 14px;
+        }
+
+        .archieve-date {
+            font-size: 14px;
+        }
+
+        .archieve-excerpt {
+            font-size: 12px;
+        }
+    }
+
+    .archieve-pages {
+        display: flex;
+        align-items: center;
+    }
+
+    .archieve-pages>a {
+        font-size: 0.7rem;
+        border-radius: 15px;
+        background-color: #fff;
+        color: #333;
+        padding: 10px 15px;
+        margin-left: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .archieve-pages>a:hover {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #fff;
+    }
+</style>
+
+{{ $articles := where .Site.RegularPages "Type" "post" }}
+<div class="archieve-container">
+    <div class="archieve-articles">
+        <div class="archieve-pages">
+            <a href="/categories/">Categories</a>
+            <a href="/projects/">Projects</a>
+            <a href="/links/">Links</a>
+            <a href="/sitemap.xml">Sitemap</a>
+        </div>
+        {{ range $articles.GroupByDate "2006" }}
+        <div id="{{ .Key }}" class="archieve-year">
+            <h2 class="archieve-year-header">{{ .Key }}</h2>
+            {{ range $index, $month := .GroupByDate "January" }}
+            <div class="archieve-month">
+                <h3 class="archieve-month-header">{{ $month.Key }}</h3>
+                <ul class="archieve-month-list">
+                    {{ range $month.Pages }}
+                    <li class="archieve-item">
+                        <a href="{{ .RelPermalink }}" class="archieve-link">{{ .Title }}</a>
+                        <span class="archieve-date">{{ .Date.Format "January 02, 2006" }}</span>
+                        <p class="archieve-excerpt">{{ .Params.excerpt }}</p>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</div>

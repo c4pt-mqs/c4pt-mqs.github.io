@@ -1,0 +1,70 @@
+<style>
+    .further-reading {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+    }
+
+    .post-box {
+        padding: 1rem;
+    }
+
+    .previous-post {
+        margin-right: auto;
+    }
+
+    .next-post {
+        margin-left: auto;
+    }
+
+    .fa-chevron-left,
+    .fa-chevron-right {
+        margin-right: 0.5rem;
+    }
+
+    a {
+        color: #333;
+    }
+
+    .sharethis-inline-share-buttons {
+        margin-top: 1.5rem;
+    }
+
+    @media (max-width: 767px) {
+        .sharethis-inline-share-buttons {
+            text-align: center;
+            justify-content: center;
+            align-content: center;
+        }
+    }
+</style>
+
+<script defer type="text/javascript"
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=642ac9215d783b00125f1c07&product=inline-share-buttons&source=platform" rel=preconnect refer></script>
+<div class="sharethis-inline-share-buttons"></div>
+{{ $paginator := .Page.Site.RegularPages }}
+{{ $currentPage := .Page }}
+{{ range $index, $page := $paginator }}
+{{ if eq $page $currentPage }}
+{{ $prevIndex := sub $index 1 }}
+{{ $nextIndex := add $index 1 }}
+{{ with (index $paginator $prevIndex) }}
+{{ if .Params.draft }}{{ else }}
+<div class="further-reading">
+    <div class="previous-post post-box">
+        <a href="{{ .RelPermalink }}"><i class="fa fa-chevron-left"></i>{{ .Title }}</a>
+    </div>
+    {{ end }}
+    {{ end }}
+    {{ with (index $paginator $nextIndex) }}
+    {{ if .Params.draft }}{{ else }}
+    <div class="next-post post-box">
+        <a href="{{ .RelPermalink }}">{{ .Title }} <i class="fa fa-chevron-right"></i></a>
+    </div>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}

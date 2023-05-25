@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1B1B1E" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Content of all posts">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" crossorigin="anonymous"
+        defer></script>
+
+    <title>MyArchieve | {{ .Title }}</title>
+    <style>
+        /* Post Position */
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+
+        .posts-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: fit-content;
+            margin-left: 2rem;
+            max-width: 60%;
+            
+        }
+
+        .post-title {
+            color: #5CC82C;
+        }
+
+        .main-content p {
+            font-size: 1rem;
+            color: #C9C9CC;
+        }
+
+        .main-content li {
+            color: #f8f8f8;
+        }
+
+        .main-content a {
+            text-decoration: none;
+            color: #f8f8f8;
+        }
+
+        .main-content a:hover {
+            text-decoration: none;
+            color: #0077cc;
+        }
+
+        .main-content strong {
+            font-size: large;
+            color: #C9C9CC;
+        }
+
+        /*  Alternative Colors #E74C3C | #0077cc | #1e90ff */
+        .main-content h1 {
+            color: #5CC82C;
+        }
+
+        .main-content h2 {
+            color: #1e90ff;
+        }
+
+        .main-content h3 {
+            color: #f47721;
+        }
+
+        /* Responsive Post Position */
+        @media (max-width: 767px) {
+            .posts-content {
+                margin-top: 1rem;
+                margin-left: 0;
+                max-width: 90%;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .posts-content {
+                max-width: 60%;
+                margin-left: 14rem;
+                margin-right: 1rem;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .posts-content {
+                margin-left: 8rem;
+                max-width: 60%;
+            }
+        }
+
+        /* Monokai-inspired Syntax Highlighting */
+        .highlight {
+            background-color: #272822;
+            padding-right: 1rem;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .highlight span {
+            font-size: 1rem;
+        }
+
+        pre code {
+            position: relative;
+        }
+
+        /* Display off the ShareThis */
+        .copy-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.5em;
+            background-color: #f8f8f8;
+            border-radius: 0 0 0 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    {{ partial "menu.html" }}
+    {{ partial "header.html" }}
+    <div class="posts-container">
+        <div class="posts-content">
+            <div class="card-body">
+                <header>
+                    <h1 class="post-title">{{ .Title }}</h1>
+                    <p class="post-subtitle">{{ .Params.subtitle }}</p>
+                </header>
+                <ul class="post-meta">
+                    <li><i class="far fa-user-circle fa-fw"></i>
+                        <a class="card-author" href="/about">{{ .Params.author }}</a>
+                    </li>
+                    <li>
+                        <i class="far fa-calendar fa-fw"></i>
+                        <time class="card-date" aria-label="Created date">{{.Date.Format "January 02, 2006" }}</time>
+                    </li>
+                    <li>
+                        <i class="far fa-clock fa-fw"></i>
+                        <span class="card-readtime" aria-label="Estimated reading time">{{ .ReadingTime }} min
+                            read</span>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+            <div class="main-content">{{ .Content }}</div>
+        </div>
+    </div>
+    {{ partial "scroll-top.html" }}
+    {{ partial "footer.html" }}
+</body>
+
+</html>

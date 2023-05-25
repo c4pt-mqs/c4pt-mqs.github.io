@@ -1,0 +1,250 @@
+<style>
+    /* Table of Contents */
+    .toc {
+        position: fixed;
+        top: 130px;
+        right: 5px;
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        font-size: 90%;
+        padding: 0px;
+        border-radius: 10px;
+    }
+
+    .toc ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul h3 {
+        color: #5cc82c;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .toc li {
+        list-style: none;
+        margin: 5px 0;
+    }
+
+    .toc li a {
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease-out;
+    }
+
+    .toc li a:hover {
+        color: #f47721;
+        transform: translateX(10px);
+    }
+
+    .toc a.active {
+        color: #f47721;
+        font-size: 105%;
+        padding: 5px;
+        border-radius: 5px;
+        position: relative;
+        transition: all 0.3s ease-out;
+    }
+
+    .toc a.active::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        width: 2px;
+        background-color: #f47721;
+        transform: translateY(0%);
+        transition: all 0.3s ease-out;
+    }
+
+    .toc ul ul {
+        display: none;
+    }
+
+    .toc .active+ul {
+        display: block;
+        margin-left: 10px;
+    }
+
+    /* Responsive Table of Contents */
+    @media only screen and (min-width: 768px) and (max-width: 1200px) {
+        .toc {
+            position: static;
+            align-items: initial;
+            width: 100%;
+            margin: 20px 0;
+            padding: 10px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .toc {
+            position: static;
+            align-items: initial;
+            width: 100%;
+            padding: 10px;
+        }
+    }
+
+    /* Link cards */
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .links-area {
+        width: 90%;
+    }
+
+    .link-card {
+        display: flex;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-out;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .link-card:hover {
+        box-shadow: 0 0 5px #5cc82c;
+    }
+
+    .link-card a {
+        color: #000;
+        text-decoration: none;
+        transition: all 0.3s ease-out;
+        font-weight: bold;
+        font-size: 20px;
+        min-width: 20%;
+        border-radius: 5px;
+        padding: 8px 5px;
+    }
+
+    .link-card a:hover {
+        background-color: #007bff;
+        color: #000;
+    }
+
+    .link-card p {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        margin-left: 20px;
+        max-width: 75%;
+    }
+</style>
+
+<section class="links-container">
+    {{ $linksByArea := .Site.Data.links }}
+    {{ with .Get "description" }}
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ range $area, $links := $linksByArea }}
+    <div class="links-area">
+        <h2 id="{{ $area }}">{{ $area }}</h2>
+        {{ range $link := where $links "url" "!=" nil }}
+        <div class="link-card">
+            <a href="{{ $link.url }}" class="link">{{ $link.name | safeHTML }}</a>
+            <p>{{ $link.description }}</p>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+</section>
+
+<script defer>
+    const toc = document.createElement("ul");
+    toc.classList.add("toc");
+    toc.innerHTML = "<h3>Contents</h3>";
+
+    const linksContainer = document.querySelector(".links-container");
+    const headings = linksContainer.querySelectorAll("h2");
+    const links = [];
+    const sectionOffsets = [];
+
+    headings.forEach((heading) => {
+        const anchor = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#${heading.id}`;
+        link.textContent = heading.textContent;
+        links.push(link);
+        anchor.appendChild(link);
+        toc.appendChild(anchor);
+        sectionOffsets.push(heading.offsetTop - linksContainer.offsetTop);
+    });
+
+    linksContainer.insertAdjacentElement("beforebegin", toc);
+
+    let activeLink = null;
+    let lastActiveLinkIndex = 0;
+
+    const setActiveLink = (link) => {
+        if (activeLink) {
+            activeLink.classList.remove("active");
+        }
+        activeLink = link;
+        activeLink.classList.add("active");
+    };
+
+    linksContainer.addEventListener("click", e => {
+        if (e.target.tagName === "A" && e.target.hash !== "") {
+            e.preventDefault();
+            const t = document.querySelector(decodeURI(e.target.hash));
+            t.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+                offsetTop: 0
+            }),
+                setActiveLink(e.target)
+        }
+    })
+
+
+    const updateActiveLink = () => {
+        const scrollTop = window.scrollY;
+        let currentActiveLinkIndex = 0;
+        sectionOffsets.forEach((offset, i) => {
+            if (scrollTop >= offset) {
+                currentActiveLinkIndex = i;
+            } else {
+                return;
+            }
+        });
+        if (currentActiveLinkIndex !== lastActiveLinkIndex) {
+            setActiveLink(links[currentActiveLinkIndex]);
+            lastActiveLinkIndex = currentActiveLinkIndex;
+
+            const url = new URL(window.location.href);
+            url.hash = links[currentActiveLinkIndex].hash;
+            history.pushState({}, "", url.toString());
+        }
+    };
+
+    const throttle = (func, delay) => {
+        let timeout;
+        return (...args) => {
+            if (!timeout) {
+                timeout = setTimeout(() => {
+                    func.apply(null, args);
+                    timeout = null;
+                }, delay);
+            }
+        };
+    };
+
+    const throttledUpdateActiveLink = throttle(updateActiveLink, 10);
+    window.addEventListener("scroll", throttledUpdateActiveLink);
+    setActiveLink(links[0]);
+</script>

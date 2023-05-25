@@ -1,0 +1,15 @@
+{{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}" class="pagination-button">Previous</a>
+{{ end }}
+
+{{ range .Paginator.Pages }}
+    {{ if .IsCurrent }}
+        <span class="pagination-current">{{ .Paginator.PageNumber }}</span>
+    {{ else }}
+        <a href="{{ .URL }}" class="pagination-button">{{ .Paginator.PageNumber }}</a>
+    {{ end }}
+{{ end }}
+
+{{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}" class="pagination-button">Next</a>
+{{ end }}

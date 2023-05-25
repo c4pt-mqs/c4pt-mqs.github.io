@@ -1,0 +1,22 @@
+{{ if .Site.RegularPages }}
+
+<div class="recent-updates">
+    <h3>Recent Updates</h3>
+    <ul>
+        {{ range first 5 .Site.RegularPages.ByLastmod }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+    {{ if .Site.Taxonomies.categories }}
+    <a style="text-decoration: none;" href="/categories/">
+        <h3>Categories</h3>
+    </a>
+    <ul>
+        {{ $categories := .Site.Taxonomies.categories.ByCount }}
+        {{ range first 6 $categories }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+        {{ end }}
+    </ul>    
+    {{ end }}
+</div>
+{{ end }}

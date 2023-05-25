@@ -1,0 +1,16 @@
+{
+    "name": "MyArchieve",
+    "short_name": "archieve",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#343541",
+    "theme_color": "#909090",
+    "icons": [
+      {
+        "src": "/img/MyArchieve.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -1,0 +1,75 @@
+<blockquote>
+    <p>{{ .Inner | markdownify }}</p>
+    <span class="cite">~ {{ .Get "author" }}</span>
+    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="fa-solid fa-copy"></i></button>
+    <span class="copy-message"></span>
+</blockquote>
+
+<style>
+    blockquote {
+        display: block;
+        background-color: #fffd;
+        color: #666;
+        padding: 1.5em 1em 0.5em;
+        position: relative;
+        border-radius: 10px;
+        margin: 1.5em;
+    }
+
+    blockquote:before {
+        content: '\201C';
+        position: absolute;
+        top: 0em;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 3rem;
+        height: 2rem;
+        font: 8em/1em 'PT Sans', sans-serif;
+        color: #666;
+        text-align: center;
+    }
+
+    blockquote .cite {
+        display: block;
+        text-align: right;
+        font-size: 0.875em;
+        color: #e74c3c;
+    }
+
+    .copy-btn {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+
+    .copy-message {
+        position: absolute;
+        top: 1em;
+        right: 3em;
+        font-size: 0.75em;
+        color: black;
+        display: none;
+    }
+</style>
+
+<script>
+    function copyToClipboard(button) {
+        const textToCopy = button.parentNode.querySelector('p').innerText;
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        const message = button.parentNode.querySelector('.copy-message');
+        message.innerText = 'Copied!';
+        message.style.display = 'inline';
+        setTimeout(function () {
+            message.style.display = 'none';
+        }, 1000);
+    }
+</script>

@@ -1,0 +1,112 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "MyArchieve"
+theme = "archiever"
+
+[params]
+  siteTitle = "MyArchieve"
+  siteTagline = "Think Deep"
+  summaryLength = 100
+  SitePages = true
+  contentDir = "content"
+  DateForm = "Jan 2 2006"
+
+[params.markdown]
+  toc = true
+
+[params.lazyimages]
+  enable = true
+
+[params.social]
+  [[params.social.accounts]]
+    name = "GitHub"
+    icon = "fa-github"
+    url = "https://github.com/c4pt-mqs"
+  [[params.social.accounts]]
+    name = "Discord"
+    icon = "fa-discord"
+    url = "https://discord.com/users/950019979896582184"
+  [[params.social.accounts]]
+    name = "LinkedIn"
+    icon = "fa-linkedin"
+    url = "https://www.linkedin.com/in/kaptan-islam/"
+  [[params.social.accounts]]
+    name = "Twitter"
+    icon = "fa-twitter"
+    url = "https://twitter.com/c4pt_mqs"
+  [[params.social.accounts]]
+    name = "Mail"
+    icon = "fa-envelope"
+    url = "mailto:c4ptmqs@proton.me"
+
+[params.pages]
+  [[params.pages.links]]
+    title = "Blog"
+    url = "/"
+    weight = 1
+  [[params.pages.links]]
+    title = "Archieve"
+    url = "/archieve"
+    weight = 2
+  [[params.pages.links]]
+    title = "Projects"
+    url = "/projects"
+    weight = 3
+  [[params.pages.links]]
+    title = "Links"
+    url = "/links"
+    weight = 4
+  [[params.pages.links]]
+    title = "About"
+    url = "/about"
+    weight = 5
+
+
+[components]
+  breadcrumbs = true
+
+[breadcrumbs]
+  append_content_page = true
+
+[permalinks]
+  posts = "/:filename/"
+  pages = "/:filename/"
+  categories = "/categories/:slug"
+
+[taxonomies]
+  date = "date"
+  category = "categories"
+
+[menu]
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 6
+
+[contentTypes]
+  [contentTypes.link]
+    name = "Links"
+    singular = "Link"
+    plural = "Links"
+    canHaveMultiple = true
+    isPlainText = true
+
+[markup.goldmark.renderer]
+  [markup.goldmark.renderer.blackfriday]
+    extension = ["autoidentifier"]
+
+enableGzip = true
+
+[minify]
+  enable = true
+  minifyOutput = true
+  verbose = true
+
+assetDir = "static"
+staticDirs = "static"
+
+[outputFormats]
+  [outputFormats.HTML]
+  mediaTypes = ["text/html"]
+  [outputFormats.HTML.params]
+    compressible = true

@@ -1,0 +1,97 @@
+<style>
+    /* Table of Contents */
+    .toc {
+        position: fixed;
+        top: 130px;
+        right: 5px;
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        font-size: 90%;
+        padding: 0px;
+    }
+
+    .toc ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .toc li {
+        list-style: none;
+        margin: 5px 0;
+    }
+
+    #TableOfContents ul li a:hover{
+        transition: transform 0.3s ease-out;
+        will-change: transform;
+        color: #f47721;
+    }
+
+    .toc a.active {
+        color: #f47721;
+        font-size: 105%;
+        padding: 1px 8px;
+        border-radius: 5px;
+        position: relative;
+        transition: transform 0.3s ease-out;
+        will-change: transform;
+    }
+
+    .toc a.active::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        width: 2px;
+        background-color: #f47721;
+        transform: translateY(0%);
+        transition: transform 0.3s ease-out;
+        will-change: transform;
+    }
+
+    .toc ul ul {
+        display: none;
+    }
+
+    .toc .active+ul {
+        display: block;
+    }
+
+    /* Responsive Table of Contents */
+    @media only screen and (min-width: 768px) and (max-width: 1200px) {
+        .toc {
+            position: static;
+            align-items: initial;
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .toc {
+            position: static;
+            align-items: initial;
+            width: 100%;
+        }
+    }
+</style>
+
+{{ with .Page.TableOfContents }}
+<div class="toc">
+    <h3>Contents</h3>
+    {{ . | replaceRE "<ul>" "<ul class=\"toc\">" | safeHTML }}
+</div>
+{{ end }}
+
+<script type="module">
+    import { setActiveLink, handleScroll, handleClick } from '/js/toc.js';
+
+    window.addEventListener('scroll', handleScroll);
+    document.querySelectorAll('.toc a').forEach(link => {
+        link.addEventListener('click', handleClick);
+    });
+</script>
+<script nomodule src="./toc-nomodule.js"></script>

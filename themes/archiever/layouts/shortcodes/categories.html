@@ -1,0 +1,58 @@
+<style>
+    .custom-card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .custom-card {
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin: 1rem;
+        background-color: #222222;
+        width: 250px;
+        height: 250px;
+    }
+
+    .custom-card:hover {
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card-body {
+        padding: 10px;
+
+    }
+
+    .custom-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .custom-icon {
+        margin-right: 5px;
+        color: #555;
+    }
+</style>
+
+<div class="custom-card-deck">
+    {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+    <div class="custom-card">
+        <div class="custom-card-body">
+            <a href="{{ "/categories/" | relURL }}{{ $name | urlize }}" class="btn btn-primary my-custom-btn">
+                <h5 class="custom-title">{{ $name | title }}</h5>
+            </a>
+            {{ with index $.Site.Data.categories $name }}
+            <p class="custom-text">{{ .description }}</p>
+            {{ end }}
+            <ul>
+                <li><i class="far fa-file fa-fw custom-icon"></i> {{ len $taxonomy }} {{ if eq (len $taxonomy) 1 }}
+                    post {{ else }}
+                    posts {{ end }}</li>
+            </ul>
+        </div>
+    </div>
+    {{ end }}
+</div>

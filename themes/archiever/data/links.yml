@@ -1,0 +1,50 @@
+
+PDFs:
+  - name: Anarcho-Copy
+    url: https://anarcho-copy.org/
+    description: Bilginin mülkiyetini reddeden; aynı zamanda onun evrensel bir deneyim olduğunu düşünen, bu sebeple imkanları yettiği ölçüde bilgiye erişimde olan engelleri herkes için aşmaya çalışan, anarşist bir korsan kolektifi ve bu kolektif için ortak bir proje alanıdır.
+  - name: Library Genesis
+    url: https://libgen.gs/
+    description: Kitaplar, makaleler, dergiler ve diğer akademik kaynaklara erişim sağlayan bir çevrimiçi arşivdir.
+  - name: Hattusa
+    url: https://hattusa.co/
+    description: Üç binden fazla e-kitaba erişebileceğiniz bir dizindir. Tümü kaliteli ve Türkçe içerikli e-kitapları tamamen ücretsiz bir şekilde indirebilirsiniz.
+
+
+Torrents:
+  - name: The Pirate Bay
+    url: https://thepiratebay10.org/
+    description: Dünyanın en büyük bittorrent indeksleyicilerinden biri. Geniş bir içerik yelpazesine sahip olup filmler, televizyon dizileri, müzik, oyunlar, yazılımlar, kitaplar ve diğer medya türlerini içeren torrent dosyalarını barındırır.
+  - name: 1337X
+    url: https://1337x.to/
+    description: Filmler, televizyon dizileri, oyunlar, müzik, uygulamalar, belgeseller, dokümanlar ve diğer içerik türlerini içeren torrent dosyalarını barındırır.
+  - name: YTS YIFY
+    url: https://yts.mx/
+    description: Kullanıcılara genellikle yüksek kalitede film dosyalarını bulma, indirme, paylaşma ve yeni çıkan filmleri hızlı bir şekilde sunma imkanı sağlar.
+  - name: TorrentFunk
+    url: https://www.torrentfunk.com/
+    description: Geniş bir içerik yelpazesine sahip olup filmler, televizyon dizileri, müzik, oyunlar, yazılımlar, e-kitaplar ve diğer medya türlerini içeren torrent dosyalarını barındırır.
+  - name: RARBG	
+    url: https://rargb.to/
+    description: Filmler, televizyon dizileri, müzik, oyunlar, yazılımlar, e-kitaplar ve diğer medya türlerini içeren geniş bir içerik yelpazesine sahiptir.
+  - name: EXT Torrent	
+    url: https://extranet.torrentbay.net/
+    description: Belirli bir grup veya kullanıcılar arasında güvenli bir şekilde torrent dosyalarının paylaşılmasını sağlar. Extranet, dış kullanıcılara güvenli erişim sağlayan bir ağ modelidir.
+  - name: Limetorrents
+    url: https://limetorrents.torrentbay.net/
+    description: Kullanıcıların torrent dosyalarını arayabildiği, paylaşabildiği ve indirebildiği bir web sitesidir. Sitedeki kullanıcılar, filmler, TV dizileri, müzik, oyunlar, yazılımlar ve daha fazlası gibi çeşitli kategorilerdeki torrent dosyalarını bulabilirler.
+
+
+Blogs:
+  - name: Network23
+    url: https://network23.org/
+    description: Kllanıcıların kendi web sitelerini ve bloglarını oluşturmalarına izin veren ücretsiz bir hosting hizmetidir. Ayrıca insanların bilgi paylaşmasına, görüşlerini ifade etmesine ve çevrimiçi topluluklarla etkileşimde bulunmasına olanak sağlar.
+  - name: Example
+    url: https://edu.anarcho-copy.org/
+    description: Bilgisayar bilimi, özgür yazılım, radikal teknolojiler, bilgisayar korsanlığı hareketleri/felsefeleri gibi konuları destekleyen açık bir dizin arşividir.
+
+Documents:
+  - name: FlipHTML5
+    url: https://fliphtml5.com/
+    description: Statik dokümanları interaktif kitaplara dönüştürme platformudur. Medya öğeleri ekleyerek bağlantılarla zenginleştirebilirsiniz.
+

@@ -1,0 +1,15 @@
+name = "Archiever"
+description = "A clean and modern theme for personal blogs"
+homepage = "https://myarchieve.net"
+features = ["responsive design", "syntax highlighting"]
+min_version = "0.80.0"
+
+[author]
+name = "Kaptan"
+homepage = "myarchieve.net"
+
+# If the theme has multiple authors
+[[authors]]
+name = ""
+homepage = ""
+

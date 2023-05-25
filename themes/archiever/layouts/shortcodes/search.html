@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Search Results</title>
+</head>
+
+<body>
+    <h1>Search Results</h1>
+    <p>Your search for "{{ .Query }}" returned {{ .NumPages }} results:</p>
+    <ul>
+        {{ range .Pages }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+</body>
+
+</html>

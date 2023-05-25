@@ -1,0 +1,193 @@
+<style>
+    /* Breadcrumb */
+    #breadcrumb {
+        list-style: none;
+        margin: 0;
+        padding: 8px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 250px;
+        width: 100%;
+        z-index: 2;
+        background-color: #333;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #breadcrumb a {
+        text-decoration: none;
+        color: #D1D5DA;
+        margin-left: 10px;
+        padding-right: 1rem;
+    }
+
+    #breadcrumb.openbtn {
+        text-align: left;
+    }
+
+    #click-nav {
+        display: none;
+        color: #ABABAB;
+        transition: 0.3s width ease;
+    }
+
+    @media only screen and (max-width: 767px) {
+        #click-nav {
+            display: flex;
+        }
+    }
+
+    /* Responsive Breadcrumb */
+    @media screen and (max-width: 767px) {
+        #breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            left: 0;
+        }
+
+        #breadcrumb li:not(:first-child) {
+            display: none;
+        }
+
+        #breadcrumb.hide li:not(:first-child) {
+            display: block;
+        }
+
+        #breadcrumb li {
+            margin-right: 10px;
+        }
+
+        #breadcrumb a {
+            padding: 5px;
+        }
+
+        #breadcrumb p {
+            display: none;
+        }
+    }
+
+    /* Search Bar */
+    .search-container {
+        display: flex;
+        align-items: center;
+        margin-left: 60%;
+        color: white;
+        background-color: #424141;
+        border-radius: 15px;
+        padding: 3px 8px;
+        border: none;
+        font-size: 1rem;
+    }
+
+    #search-input {
+        padding-left: 0.5rem;
+        margin-right: 5px;
+        border: none;
+        background-color: transparent;
+        color: white;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    #search-input:focus {
+        outline: none;
+    }
+
+    /* Responsive Search Bar */
+    @media screen and (max-width: 767px) {
+        .search-container {
+            flex-wrap: wrap;
+        }
+
+        #search-input {
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
+
+<header>
+    <ul id="breadcrumb">
+        <span id="click-nav" onclick="toggleNav()"
+            style="font-size: 1.5rem; transition: transform 0.3s ease 0s">&#9776;</span>
+        <li>
+            <a href="/">Blog</a>
+        </li>
+        <li>
+            <span id="mode-toggle" href="{{ .Site.BaseURL }}">
+                <i class="fa-solid fa-lightbulb"></i>
+            </span>
+        </li>
+        <li class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="search" id="search-input" placeholder="Search...">
+        </li>
+    </ul>
+</header>
+
+<script>
+    const modeToggle = document.querySelector("#mode-toggle");
+    const body = document.body;
+    const savedMode = localStorage.getItem("light-mode");
+
+    if (savedMode === "true") {
+        body.classList.add("light-mode");
+    }
+
+    if (modeToggle) {
+        modeToggle.addEventListener("click", function () {
+            body.classList.toggle("light-mode");
+            localStorage.setItem("light-mode", body.classList.contains("light-mode"));
+        });
+    }
+</script>
+
+<script>
+    const clickNav = document.getElementById('click-nav');
+    const breadcrumb = document.getElementById('breadcrumb');
+    const cardDeck = document.getElementsByClassName('card-deck');
+    const postsContainer = document.getElementsByClassName('posts-container');
+    const searchInput = document.getElementById('search-input');
+
+    function toggleNav() {
+        const navWidth = clickNav.style.width;
+        const translateX = navWidth === '250px' ? '0px' : '250px';
+
+        clickNav.style.width = navWidth === '250px' ? '0' : '250px';
+        clickNav.style.display = navWidth === '250px' ? 'none' : 'flex';
+        breadcrumb.style.transform = `translateX(${translateX})`;
+        if (cardDeck && cardDeck.length > 0) {
+            cardDeck[0].style.transition = 'transform 0.3s ease';
+            cardDeck[0].style.transform = `translateX(${translateX})`;
+        }
+        if (postsContainer && postsContainer.length > 0) {
+            postsContainer[0].style.transition = 'transform 0.3s ease';
+            postsContainer[0].style.transform = `translateX(${translateX})`;
+        }
+    }
+
+    function handleSearchQuery(query) {
+        const cards = document.querySelectorAll('.card, .archieve-year, .archieve-month, .project, .links-area .project-title');
+        cards.forEach(card => {
+            const display = card.innerText.toLowerCase().includes(query.toLowerCase()) ? 'block' : 'none';
+            card.style.display = display;
+        });
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    const debouncedSearch = debounce(event => {
+        handleSearchQuery(decodeURI(event.target.value));
+    }, 300);
+
+    searchInput.addEventListener('input', debouncedSearch);
+</script>
